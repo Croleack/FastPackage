@@ -16,7 +16,7 @@ public final class BlocView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     func startFalling() {
@@ -38,5 +38,7 @@ fileprivate extension BlocView {
         static let timeIntervalBlockView = 4.0
         static let blockViewWidth: CGFloat = 50.0
         static let blocViewHeight: CGFloat = 50.0
+        
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }

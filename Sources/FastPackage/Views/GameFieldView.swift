@@ -10,7 +10,7 @@ import UIKit
 public final class GameFieldView: UIView {
     
     let characterImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "person.fill"))
+        let imageView = UIImageView(image: UIImage(systemName: Constants.systemName))
         imageView.contentMode = .scaleAspectFit
         imageView.frame = CGRect(x: Constants.frameImageX,
                                  y: Constants.frameImageY,
@@ -26,7 +26,7 @@ public final class GameFieldView: UIView {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError(Constants.fatalError)
     }
     
     private func setupViews() {
@@ -119,5 +119,8 @@ fileprivate extension GameFieldView {
         static let stepFrame: CGFloat = 15
         static let characterXandYView: CGFloat = 300
         static let movementStep: CGFloat = 50.0
+        
+        static let systemName = "person.fill"
+        static let fatalError = "init(coder:) has not been implemented"
     }
 }

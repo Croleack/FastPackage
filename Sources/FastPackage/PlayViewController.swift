@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class PlayViewController: UIViewController {
+public final class PlayViewController: UIViewController {
     
     // MARK: - Variables
     let gameFieldView: GameFieldView = {
@@ -28,11 +28,12 @@ public class PlayViewController: UIViewController {
     // MARK: - viewDidLoad
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupUI()
         
     }
+    // MARK: - functions
     
-    // Добавляем наблюдение за изменением ориентации
+    /// Добавляем наблюдение за изменением ориентации
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(handleDeviceRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
@@ -43,15 +44,13 @@ public class PlayViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
-    // Обрабатываем изменение ориентации устройства
+    /// Обрабатываем изменение ориентации устройства
     @objc
     private func handleDeviceRotation() {
         gameFieldView.handleScreenRotation()
     }
     
-    // MARK: - functions
-    
-    private func setupView() {
+    private func setupUI() {
         view.backgroundColor = .systemPink
         view.addSubview(gameFieldView)
         NSLayoutConstraint.activate([
@@ -117,9 +116,6 @@ public class PlayViewController: UIViewController {
     private func handleCollision() {
         isGameOver = true
         stopWatchView.stop()
-        
-        let playerTime = stopWatchView.getTimeString()
-        UserDefaults.standard.set(playerTime, forKey: "playerTime")
         
         let alertController = UIAlertController(
             title: "Игра окончена,\n Время \(stopWatchView.getTimeString())",
